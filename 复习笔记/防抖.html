@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" class="ipt1">
+    <br />
+    <br />
+    <br />
+    <br />
+    <input type="text" class="ipt2" style="background: rgb(155, 133, 133);">
+</body>
+<script>
+    debounce()
+    function debounce() {
+        //防抖
+        let timerId = null
+        document.querySelector(".ipt1").onkeyup = function () {
+            if (timerId !== null) {
+                clearTimeout(timerId)
+            }
+            timerId = setTimeout(() => {
+                console.log("防抖")
+            }, 1000)
+        }
+    }
+    throttle()
+    function throttle() {
+        //节流
+        let timerId2 = null
+        document.querySelector(".ipt2").onmouseover = function () {
+            if (timerId2 !== null) {
+                return
+            }
+            timerId2 = setTimeout(() => {
+                console.log("我是节流")
+                timerId2 = null
+            }, 1000)
+        }
+    }
+
+
+</script>
+
+</html>

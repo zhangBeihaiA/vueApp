@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // 什么时候使用箭头函数
+        setTimeout(function () {
+            console.log(this);//window
+        }, 1000)
+
+        setTimeout(() => {
+            console.log(this);//window
+        }, 1000)
+
+        // 结论：箭头函数中的this引用的就是最近作用域中的this
+        const obj = {
+            aaa() {
+                setTimeout(function () {
+                    console.log(this);//window
+                })
+                setTimeout(() => {
+                    console.log(this);//obj
+                })
+            }
+        }
+        const obj2 = {
+            aaa() {
+                setTimeout(function () {
+                    setTimeout(function () {
+                        console.log(this);//window
+                    })
+
+                    // this
+                    setTimeout(() => {//向外找，找到了42行作用域中的this，42行指向window
+                        console.log(this);//window
+                    })
+                })
+
+                setTimeout(() => {
+                    setTimeout(function () {
+                        console.log(this);//window
+                    })
+
+                    //   this(是47行箭头函数的this，继续像外层找，指向obj)
+                    setTimeout(() => {//向外层找，找到47行作用域中的this
+                        console.log(this);//obj
+                    })
+                })
+            }
+        }
+        const obj3 = {
+            aaa() {
+                setTimeout(function () {
+                    setTimeout(function () {
+                        console.log(this);//window
+                    })
+                })
+
+                setTimeout(() => {
+                    console.log(this);//window
+                })
+
+                setTimeout(() => {
+                    setTimeout(function () {
+                        console.log(this);//
+                    })
+                })
+
+                setTimeout(() => {
+                    console.log(this);
+                })
+            }
+
+        }
+        aaa()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function ajax(url) {
+        const xhr = new XMLHttpRequest()
+        xhr.open('get', url, false)
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    console.info("响应结果"+xhr.response)
+                }
+            }
+            // console.log(new Error("出错啦！"))
+        }
+        xhr.send(null)
+    }
+    // fetch
+    function ajaxFetch(url){
+        fetch(url)
+        .then((response)=>{
+            return response.json()
+        })
+        .then(data => console.log(data))
+        // .then(response => response.json())
+        // .then(data => console.log(data))
+    }
+    function ajaxFetch2(url){
+        fetch(url)
+        .then(response => response.json())
+        .then(data => console.log(data))
+    }
+
+    // ajax('https://api.uomg.com/api/rand.qinghua')
+    ajaxFetch('https://api.uomg.com/api/rand.qinghua')
+    // ajaxFetch2('https://api.uomg.com/api/rand.qinghua')
+
+
+
+
+</script>
+
+</html>

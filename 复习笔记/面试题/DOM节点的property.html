@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+</body>
+<script>
+    const pList = document.querySelectorAll('p')
+    const p = pList[0]
+    console.log(p.style.width) // 获取样式
+    p.style.width = '100px' // 修改样式
+    console.log(p.className) // 获取 class
+    p.className = 'p1' // 修改 class
+
+    // 获取 nodeName 和 nodeType
+
+    console.log(p.nodeName)
+    console.log(p.nodeType)
+</script>
+
+</html>

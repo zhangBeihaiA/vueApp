@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body></body>
+<script>
+    const img1 = new Promise((resolve, reject) => {
+        let oimg = new Image()
+        oimg.src = 'https://robohash.org1/1'
+        oimg.onload = () => {
+            resolve(oimg)
+        }
+        oimg.onerror = () => {
+            reject("图片加载失败")
+        }
+
+    })
+
+    img1.then((data) => {
+        document.body.appendChild(data)
+    }).catch((message) => {
+        console.log(message)
+    })
+
+    //async await *********************************************
+    function loadImg(src) {
+        return new Promise((resolve, reject) => {
+            const img1 = new Image()
+            img1.src = src
+
+            img1.onload = () => {
+                resolve(img1)
+            }
+            img1.onerror = () => {
+                reject(new Error("图片未加载"))
+            }
+        })
+    }
+
+    (async ()=>{
+        let aimg = await loadImg('https://robohash.org/1')
+        document.body.appendChild(aimg)
+        let bimg = await loadImg('https://robohash.org/2')
+        document.body.appendChild(bimg)
+    })()
+    
+
+</script>
+
+</html>

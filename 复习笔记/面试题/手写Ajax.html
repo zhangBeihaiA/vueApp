@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>点我刷新情话</button>
+    <h1></h1>
+    
+</body>
+<script>
+    
+    function ajax(url) {
+        let h1 = document.querySelector('h1')
+        const xhr = new XMLHttpRequest();
+        xhr.open("get", url, true);
+        xhr.onreadystatechange = function () {
+            // 异步回调函数
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    console.info("响应结果", xhr.response)
+                    h1.innerText = JSON.parse(xhr.response).content
+                    
+                }
+            }
+        }
+        xhr.send();
+    }
+    document.querySelector('button').addEventListener('click',function(){
+        ajax('https://api.uomg.com/api/rand.qinghua')
+    })
+    
+     
+</script>
+
+</html>
