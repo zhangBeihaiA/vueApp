@@ -235,6 +235,7 @@ export default {
             height: 36px;
             margin-top: 25px;
             outline: none;
+            cursor: pointer;
           }
         }
 

@@ -46,4 +46,7 @@ body{
   overflow: hidden;
   padding-right:0 !important;
 }
+a,span{
+  cursor: pointer;
+}
 </style>
