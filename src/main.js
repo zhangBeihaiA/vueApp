@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 //element-ui
-import { Button, MessageBox } from 'element-ui'
+import { Button, MessageBox,Message } from 'element-ui'
 // import 'element-ui/lib/theme-chalk/index.css';
 //引入路由器
 import router from '@/router'
@@ -16,6 +16,7 @@ Vue.component(Pagination.name, Pagination)
 Vue.component(Button.name, Button)
 Vue.prototype.$alert = MessageBox.alert;
 Vue.prototype.$msgbox = MessageBox;
+Vue.prototype.$message = Message;
 
 //测试
 // import {reCategoryList} from '@/api'

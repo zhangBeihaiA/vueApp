@@ -1,4 +1,4 @@
-<template>
+ <template>
   <div class="pagination">
     <button @click="$emit('currentPage',pageNo-1)" :disabled="pageNo==1">上一页</button>
     <button v-if="startNumAndEndNum.start > 1" @click="$emit('currentPage',1)" :class="{active:pageNo==1}">1</button>

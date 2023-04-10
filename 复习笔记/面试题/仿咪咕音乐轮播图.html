@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width='device-width', initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        /* #container {} */
+
+        .swiper {
+            width: 1400px;
+            height: 380px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .swiper .swiperItem {
+            width: 1400px;
+            height: 350px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 0px 15px black;
+            position: absolute;
+            transition: 1s;
+        }
+
+        .swiper .swiperItem img {
+            width: 1400px;
+            height: 350px;
+
+        }
+
+        .def {
+            opacity: 0;
+            z-index: -1;
+            transform: perspective(500px) translateZ(-200px);
+        }
+
+        .c {
+            opacity: 1;
+            z-index: 1;
+            transform: perspective(500px) translateZ(-230px) translateX(250px);
+        }
+
+        .a {
+            opacity: 1;
+            z-index: 1;
+            transform: perspective(500px) translateZ(-230px) translateX(-250px);
+        }
+
+        .b {
+            opacity: 1;
+            z-index: 999;
+            transform: perspective(500px) translateZ(-80px) translateY(0px);
+        }
+        .points{
+            height: 4px;
+            /* border: 1px solid rebeccapurple; */
+            width: 200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+        }
+        .points a{
+            width: 14px;
+            height: 4px;
+            background-color: rgb(121, 121, 121);
+            border-radius: 20%;
+        }
+        .points .hidden{
+            background-color: rgb(121, 121, 121);
+        }
+        .points .show{
+            background-color: rgb(250, 146, 238);
+        }
+        .points a:hover{
+            background-color: rgb(250, 146, 238);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div class="swiper">
+            <div class="swiperItem b"><a href=""><img src="./image/1.jpg" alt=""></a></div>
+            <div class="swiperItem c"><a href=""><img src="./image/2.jpg" alt=""></div>
+            <div class="swiperItem def"><a href=""><img src="./image/3.jpg" alt=""></div>
+            <div class="swiperItem def"><a href=""><img src="./image/4.jpg" alt=""></div>
+            <div class="swiperItem def"><a href=""><img src="./image/5.jpg" alt=""></div>
+            <div class="swiperItem def"><a href=""><img src="./image/6.jpg" alt=""></div>
+            <div class="swiperItem a"><a href=""><img src="./image/7.jpg" alt=""></div>
+        </div>
+        <div class="points">
+            <a href="#" class="show"></a>
+            <a href="#" class="hidden"></a>
+            <a href="#" class="hidden"></a>
+            <a href="#" class="hidden"></a>
+            <a href="#" class="hidden"></a>
+            <a href="#" class="hidden"></a>
+            <a href="#" class="hidden"></a>
+        </div>
+        <a href=""></a>
+        <a href=""></a>
+    </div>
+
+    <script>
+        let container = document.getElementById('container')
+        let swiperItems = document.querySelectorAll('.swiperItem')
+        let nowIndex = 0
+        let timer = null
+        // console.log(swiperItem)
+
+        // 循环播放
+        swiperPlay()
+        function swiperPlay() {
+            timer = setInterval(() => {
+                nowIndex++
+                if (nowIndex == swiperItems.length) {
+                    nowIndex = 0
+                }
+                changeImg()
+                // console.log("nowIndex",nowIndex)
+            }, 2000)
+        }
+        //改图方法
+        function changeImg() {
+            for (var i = 0; i < swiperItems.length; i++) {
+                swiperItems[i].className = "swiperItem def"
+            }
+            if (nowIndex === 0) {
+                swiperItems[nowIndex].className = "swiperItem b"
+                swiperItems[nowIndex + 1].className = "swiperItem c"
+                swiperItems[swiperItems.length - 1].className = "swiperItem a"
+            } else if (nowIndex === swiperItems.length - 1) {
+                swiperItems[nowIndex].className = "swiperItem b"
+                swiperItems[0].className = "swiperItem c"
+                swiperItems[nowIndex - 1].className = "swiperItem a"
+            } else {
+                swiperItems[nowIndex].className = "swiperItem b"
+                swiperItems[nowIndex + 1].className = "swiperItem c"
+                swiperItems[nowIndex - 1].className = "swiperItem a"
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

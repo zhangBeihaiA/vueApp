@@ -1,10 +1,10 @@
 <template>
   <div class="pay-main">
     <!-- 测试 -->
-    <el-button type="primary" icon="el-icon-delete" @click="paySuccess"
+    <el-button type="primary" icon="el-icon-success" @click="paySuccess"
       >直接跳转成功支付</el-button
     >
-    <el-button type="success" icon="el-icon-search">测试按钮</el-button>
+    <!-- <el-button type="success" icon="el-icon-search">测试按钮</el-button> -->
     <div class="pay-container">
       <div class="checkout-tit">
         <h4 class="tit-txt">
@@ -51,7 +51,7 @@
         <div class="step-cont">
           <ul class="payType">
             <li><img src="./images/pay2.jpg" /></li>
-            <li><img src="./images/pay3.jpg" /></li>
+            <li @click="open"><img src="./images/pay3.jpg" /></li>
           </ul>
         </div>
         <div class="hr"></div>
@@ -123,7 +123,10 @@ export default {
       console.log(result);
       if (result.code == 200) {
         this.payInfo = result.data;
+      }else{
+        alert(result.data)
       }
+      
     },
     //弹出框
     async open() {
@@ -144,22 +147,26 @@ export default {
         showClose: false,
         //关闭弹窗的配置
         beforeClose: (type, instance, done) => {
+          //type:区分取消|确定按钮
+          //instance：当前组件实例
+          //done:关闭弹出框的方法
           if (type == "cancel") {
-            alert("请联系豪哥！");
+            this.$message.warning("请联系豪哥！");
             clearInterval(this.timer);
             this.timer = null;
             done()
           } else {
+            //判断是否真的支付了
             if (this.code == 200) {
               clearInterval(this.timer);
               this.timer = null;
               done();
-              this.$router.push("/paysuccess");
+              this.$router.replace("/paysuccess");
             }
           }
         },
       });
-      //如果未完成支付（定时器存在）
+      //如果未完成支付（定时器存在）没有正在运行的定时器
       if (!this.timer) {
         this.timer = setInterval(async () => {
           let result = await this.$API.reqPayStatus(this.orderId);
@@ -173,7 +180,9 @@ export default {
             //关闭弹窗
             this.$msgbox.close();
             //跳转
-            this.$router.push("/paySuccess");
+            this.$router.push("/paysuccess");
+          }else {
+            console.log('未支付直接跳转了');
           }
         }, 1000);
       }

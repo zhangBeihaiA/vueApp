@@ -174,7 +174,8 @@ export default {
     ...mapGetters({
       goodsList: "goodsList",
     }),
-    isOne() {
+    isOne() {  
+      //返回第一个元素的索引，找不到则返回-1
       return this.searchParams.order.indexOf("1") !== -1;
     },
     isTwo() {
@@ -233,6 +234,7 @@ export default {
       // `["${a.attrId}:${a2.attrName}:a"]`
       let props = `${a.attrId}:${a2}:${a.attrName}`;
       //数组去重
+      console.log(props)
       if (this.searchParams.props.indexOf(props) == -1)
         this.searchParams.props.push(props);
 

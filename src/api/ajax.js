@@ -31,6 +31,7 @@ requests.interceptors.request.use((config) => {
 //响应拦截器
 requests.interceptors.response.use((res) => {
     nprogress.done()
+    console.log(res)
     return res.data
 }, (error) => {
     return Promise.reject(new Error('faile'))

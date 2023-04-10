@@ -154,7 +154,7 @@ export default {
         if(result.code==200){
          this.orderId = result.data
          //路由跳转和传参
-         await this.$router.push({path:'/pay',query:{orderId:this.orderId}})
+         await this.$router.push({name:'pay',query:{orderId:this.orderId}})
       }else{
         alert(result.data)
       }

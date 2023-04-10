@@ -85,26 +85,31 @@ export default {
       //对象写法
       if (this.$route.query) {
         // console.log(this.$route.query)
-        let location = {
-          name: "search",
-          params: { keyword: this.keyword || undefined },
-        };
-        location.query = this.$route.query;
-        this.$router.push(location);
+        // let location = {
+        //   name: "search",
+        //   params: { keyword: this.keyword || undefined },
+        // };
+        // location.query = this.$route.query;
+        // this.$router.push(location);
+        // catch()处理错误
+        this.$router.push(`/search/${this.keyword}`).catch(() => {});
+        // 指定成功的回调函数
+        this.$router.push(`/search/${this.keyword}`, () => {});
+        // 指定失败的回调函数
+        this.$router.push(`/search/${this.keyword}`, undefined, () => {});
       }
     },
     //退出登录要做的事
-    async loginOut(){
+    async loginOut() {
       try {
-        await this.$store.dispatch('userLoginOut')
-        this.$router.push('/login')
+        await this.$store.dispatch("userLoginOut");
+        this.$router.push("/login");
       } catch (error) {
-        alert(error.message)
+        alert(error.message);
       }
-      
-    }
+    },
   },
-  
+
   computed: {
     //计算登录成功服务器返回的用户信息
     userName() {

@@ -27,11 +27,11 @@ export default {
      // 因为当守卫执行前，组件实例还没被创建
       // next();
       //当路由从paysuccess离开的时候会出发
-      // if(from.path=='/pay'){
-      //   next()
-      // }else{
-      //   next(false)
-      // }
+      if(from.path=='/pay'){
+        next()
+      }else{
+        next(false)
+      }
   },
   
 };

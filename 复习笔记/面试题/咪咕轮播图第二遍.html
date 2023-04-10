@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .swiper {
+            width: 1400px;
+            height: 380px;
+            /* overflow: hidden; */
+            margin: 0 auto;
+        }
+
+        .swiper .swiperItem {
+            width: 1400px;
+            height: 350px;
+            position: absolute;
+            overflow: hidden;
+            transition: 1s;
+            border-radius: 10px;
+            box-shadow: 0 0 15px black;
+
+
+        }
+
+        .swiper .swiperItem img {
+            width: 1400px;
+            height: 350px;
+
+        }
+
+        .def {
+            opacity: 0;
+            z-index: -1;
+            transform: perspective(500px) translateZ(-200px)
+        }
+
+        .a {
+            opacity: 1;
+            z-index: 1;
+            transform: perspective(500px) translateZ(-230px) translateX(-250px);
+        }
+
+        .b {
+            opacity: 1;
+            z-index: 999;
+            transform: perspective(500px) translateZ(-80px)  translateX(0px);
+
+        }
+
+        .c {
+            opacity: 1;
+            z-index: 1;
+            transform: perspective(500px) translateZ(-230px) translateX(250px);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div class="swiper">
+            <div class="swiperItem b"><a href=""><img src="./image/1.jpg" alt=""></a></div>
+            <div class="swiperItem c"><a href=""><img src="./image/2.jpg" alt=""></a></div>
+            <div class="swiperItem def"><a href=""><img src="./image/3.jpg" alt=""></a></div>
+            <div class="swiperItem def"><a href=""><img src="./image/4.jpg" alt=""></a></div>
+            <div class="swiperItem def"><a href=""><img src="./image/5.jpg" alt=""></a></div>
+            <div class="swiperItem def"><a href=""><img src="./image/6.jpg" alt=""></a></div>
+            <div class="swiperItem a"><a href=""><img src="./image/7.jpg" alt=""></a></div>
+        </div>
+        <div class="points"></div>
+        <div class="btn-left"></div>
+        <div class="btn-right"></div>
+    </div>
+
+
+    <script>
+        let container = document.getElementById('#container')
+        let swiperItems = document.querySelectorAll('.swiperItem')
+        // console.log(swiperItems)
+        let timer = null
+        let currIndex = 0
+
+        swiperPlay()
+        function swiperPlay() {
+            let timer = setInterval(() => {
+                currIndex++
+                if(currIndex==swiperItems.length) currIndex =0
+                changeImg()
+            }, 2000)
+        }
+        function changeImg() {
+
+            for(let i = 0; i < swiperItems.length; i++) {
+                swiperItems[i].className = 'swiperItem def'
+                if (currIndex == 0) {
+                    swiperItems[currIndex].className = 'swiperItem b'
+                    swiperItems[currIndex + 1].className = 'swiperItem c'
+                    swiperItems[swiperItems.length-1].className = 'swiperItem a'
+                } else if (currIndex == swiperItems.length - 1) {
+                    swiperItems[currIndex].className = 'swiperItem b'
+                    swiperItems[currIndex - 1].className = 'swiperItem a'
+                    swiperItems[0].className = 'swiperItem c'
+                } else {
+                    swiperItems[currIndex].className = 'swiperItem b'
+                    swiperItems[currIndex + 1].className = 'swiperItem c'
+                    swiperItems[currIndex - 1].className = 'swiperItem a'
+                }
+            }
+
+        }
+    </script>
+</body>
+
+</html>

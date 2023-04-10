@@ -38,10 +38,11 @@ export default [
     {
         path: '/paysuccess',
         component: PaySuccess,
-        meta: { show: true }
+        meta: { show: false }
     },
     {
         path: '/pay',
+        name:'pay',
         component: Pay,
         meta: { show: true },
         beforeEnter:(to,from,next)=>{
@@ -59,7 +60,7 @@ export default [
         meta: { show: true }
     },
     {
-        path: '/search/:keyword?',
+        path: '/search/:keyword?',  //使用占位符声明接受的params参数*************
         component: Search,
         meta: { show: true },
         name: 'search',

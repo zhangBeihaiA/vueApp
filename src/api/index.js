@@ -5,7 +5,7 @@ import instance from './mockRequest'
 import qinghua from './qinghua'
 //获取土味情话
 export const reqGetQinghua = () => {
-    return qinghua({ url: 'https://api.uomg.com/api/rand.qinghua', method: "get" },)
+    return qinghua({ url: 'https://api.uomg.com/api/rand.qinghua', method: "get" })
 }
 
 export const reqCategoryList = () => {

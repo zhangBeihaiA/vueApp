@@ -140,6 +140,7 @@ export default {
           location.query = query;
           //路由跳转
           this.$router.push(location);
+          console.log(location)
         }
       }
     },
